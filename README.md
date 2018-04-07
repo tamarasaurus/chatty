@@ -3,7 +3,7 @@ realtime chat inspired by 2000s ICQ
 
 ### tasks
 
-- [ ] Persist connections
+- [x] Persist connections
 - [ ] Add different colors for uncommitted lines
 - [ ] Usernames
 - [ ] Page style
