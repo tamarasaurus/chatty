@@ -2,18 +2,29 @@ $(function() {
     const socket = new WebSocket('ws://192.168.1.99:8080');
 
     socket.addEventListener('open', function (event) {
-        socket.send('Hello Server!');
+        socket.send('new user joined');
     });
 
     socket.addEventListener('message', function (event) {
-        console.log('Message from server', event.data);
-        $('ul').append(`<li>${event.data}</li>`)
+        const messageGroups = JSON.parse(event.data);
+        const sortedMessages = _.sortBy(messageGroups, 'date');
+        const messageContents = _.map(sortedMessages, 'message');
+        const lines = _.without(messageContents, '\n');
+        
+        const list = $('ul');
+        list.empty()
+        
+        _.each(lines, line => list.append(`<li>${line}</li>`))
     });
 
-    // Set a timeout, gather events and then re-render the whole list
-    $('input').on('keypress', (event) => {
-        socket.send($(event.currentTarget).val());
+    $('input').on('keyup', (event) => {
+        const el = $(event.currentTarget);
+
+        if (event.keyCode === 13) {
+            socket.send('\n');
+            return el.val('');
+        }
+
+        socket.send(el.val());
     })
 });
-
-
