@@ -1,5 +1,5 @@
 # chatty
-realtime chat inspired by 2000s ICQ
+realtime websockets chat inspired by 2000s ICQ
 
 ### tasks
 

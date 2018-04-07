@@ -1,7 +1,7 @@
 {
   "name": "chatty",
   "version": "1.0.0",
-  "description": "realtime chat inspired by 2000s ICQ",
+  "description": "realtime websockets chat inspired by 2000s ICQ",
   "main": "server/start.js",
   "repository": "https://github.com/tamarasaurus/chatty",
   "author": "tamarasaurus <tamara@robichet.com>",
