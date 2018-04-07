@@ -7,6 +7,6 @@ realtime websockets chat inspired by 2000s ICQ
 - [ ] Add different colors for uncommitted lines
 - [ ] Usernames
 - [ ] Store the last 5 minutes of messages
-- [ ] Move clients and messages out of in-memory storage
+- [ ] Store clients and messages in redis
 - [ ] Page style
 - [ ] Add simple color formatting 
