@@ -1,0 +1,14 @@
+{
+  "name": "chatty",
+  "version": "1.0.0",
+  "description": "realtime chat inspired by 2000s ICQ",
+  "main": "server/start.js",
+  "repository": "https://github.com/tamarasaurus/chatty",
+  "author": "tamarasaurus <tamara@robichet.com>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "express": "^4.16.3",
+    "standard": "^11.0.1",
+    "ws": "^5.1.1"
+  }
+}
