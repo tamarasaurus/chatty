@@ -20,6 +20,29 @@ $(function () {
     _.each(lines, line => list.append(`<li>${line}</li>`))
   }
 
+  function setUsername (event) {
+    const value = $('.intro input').val()
+    $('.intro').hide()
+    $('.chat').show()
+    $('.chat input').focus()
+
+    username = value
+    socket.send(`${username} joined`)
+  }
+
+  $('.intro input').on('keyup', event => {
+    const value = $('.intro input').val()
+
+    if (
+      event.keyCode === 13 &&
+        value.length > 0
+    ) {
+      setUsername(event)
+    }
+  })
+
+  $('.intro button').on('click', setUsername)
+
   $('.chat input').on('keyup', event => {
     const el = $(event.currentTarget)
 
@@ -31,12 +54,5 @@ $(function () {
     socket.send(`${username}: ${el.val()}`)
   })
 
-  $('.intro button').on('click', event => {
-    const value = $('.intro input').val()
-    $('.intro').hide()
-    $('.chat').show()
-
-    username = value
-    socket.send(`${username} joined`)
-  })
+  $('.intro input').focus()
 })
