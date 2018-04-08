@@ -89,12 +89,15 @@ wss.on('connection', ws => {
      * On each message clean up the expired ones and broadcast them
      */
     getMessages().then(messages => {
-      if (message === '\n') ws.id = uuid.v4()
+      message = JSON.parse(message || '{}')
+
+      if (message.text === '\n') ws.id = uuid.v4()
       messages[ws.id] = {
         id: ws.id,
-        message,
+        message: message.text,
         date: new Date().getTime(),
-        expiry: getExpiryDate()
+        expiry: getExpiryDate(),
+        user: message.user
       }
 
       redisClient.set('messages', JSON.stringify(messages))

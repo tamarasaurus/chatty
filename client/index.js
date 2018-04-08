@@ -12,12 +12,19 @@ $(function () {
   socket.onmessage = function (event, flags, number) {
     const messageGroups = JSON.parse(event.data)
     const sortedMessages = _.sortBy(messageGroups, 'date')
-    const messageContents = _.map(sortedMessages, 'message')
-    const lines = _.without(messageContents, '\n')
+    const lines = _.filter(sortedMessages, message => message.message !== '\n')
     const list = $('ul')
     list.empty()
 
-    _.each(lines, line => list.append(`<li>${line}</li>`))
+    const currentlyEditingIndex = _.findLastIndex(lines, message => message.user === username)
+
+    _.each(lines, (line, index) => {
+      let className = ''
+      if (index === currentlyEditingIndex) className = 'current'
+      list.append(`<li class="${className}">${line.message}</li>`)
+    })
+
+    scrollToBottom()
   }
 
   function setUsername (event) {
@@ -27,10 +34,17 @@ $(function () {
     $('.chat input').focus()
 
     username = value
-    socket.send(`${username} joined`)
+    socket.send(JSON.stringify({text: `${username} joined`, user: username}))
+  }
+
+  function scrollToBottom () {
+    const scrollHeight = $('ul').get(0).scrollHeight
+    $('ul').scrollTop(scrollHeight)
   }
 
   $('.intro input').on('keyup', event => {
+    scrollToBottom()
+
     const value = $('.intro input').val()
 
     if (
@@ -44,14 +58,17 @@ $(function () {
   $('.intro button').on('click', setUsername)
 
   $('.chat input').on('keyup', event => {
+    scrollToBottom()
+
     const el = $(event.currentTarget)
 
     if (event.keyCode === 13) {
-      socket.send('\n')
-      return el.val('')
+      socket.send(JSON.stringify({text: '\n', user: username}))
+      el.val('').trigger('keyup')
+      return $('input.current').removeClass('current')
     }
 
-    socket.send(`${username}: ${el.val()}`)
+    return socket.send(JSON.stringify({text: `${username}: ${el.val()}`, user: username}))
   })
 
   $('.intro input').focus()
