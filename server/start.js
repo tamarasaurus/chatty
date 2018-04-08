@@ -135,6 +135,6 @@ wss.on('connection', ws => {
 /**
  * Start the server
  */
-server.listen(8080, function listening () {
-  console.log('Listening on %d', server.address().port)
+server.listen(process.env.PORT, function listening () {
+  console.log('Listening on %d', process.env.PORT)
 })
