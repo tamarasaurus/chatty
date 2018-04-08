@@ -6,7 +6,7 @@ const app = express()
 const _ = require('lodash')
 
 const redis = require('redis')
-const redisClient = redis.createClient()
+const redisClient = redis.createClient(process.env.REDIS_URL)
 const { promisify } = require('util')
 const getAsync = promisify(redisClient.get).bind(redisClient)
 
