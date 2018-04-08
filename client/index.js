@@ -3,7 +3,7 @@
 $(function () {
   let username = null
 
-  const socket = new ReconnectingWebSocket('ws://chatty-web.herokuapp.com')
+  const socket = new ReconnectingWebSocket('wss://chatty-web.herokuapp.com')
 
   socket.onopen = function (e) {
     console.log('WebSocketClient connected:', e)
