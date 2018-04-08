@@ -32,4 +32,5 @@ frontend:
 - [x] Page style
 - [x] Add simple color formatting
 - [x] Add different colors for users
-- [ ] Deploy to heroku
+- [x] Deploy to heroku
+- [ ] Stop ability to spoof another user
