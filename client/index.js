@@ -3,7 +3,7 @@
 $(function () {
   let username = null
 
-  const socket = new ReconnectingWebSocket('ws://192.168.1.99:8080')
+  const socket = new ReconnectingWebSocket('ws://localhost:8080')
 
   socket.onopen = function (e) {
     console.log('WebSocketClient connected:', e)

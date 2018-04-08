@@ -1,9 +1,21 @@
 # chatty
-realtime websockets chat inspired by 2000s ICQ
+realtime websockets chat inspired by 2000s ICQ. you can chat in real-time, everybody can see what you write before hitting enter, and maximum 20 concurrent users.
+
 
 ![intro](https://user-images.githubusercontent.com/1336344/38470062-09ac36cc-3b5e-11e8-950a-daaedc26bff2.png)
 
 ![chat](https://user-images.githubusercontent.com/1336344/38470063-0b885d40-3b5e-11e8-9258-b138013813b6.png)
+
+
+### setup
+
+backend:
+- [Set up and install redis](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-redis-on-ubuntu-16-04)
+
+frontend:
+- `yarn install && yarn run start`
+- Go to `http://localhost:8080`
+
 
 ### tasks
 
