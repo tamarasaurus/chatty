@@ -11,9 +11,11 @@ realtime websockets chat inspired by 2000s ICQ. you can chat in real-time, every
 
 backend:
 - [Set up and install redis](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-redis-on-ubuntu-16-04)
+- [Install nodejs 8.9.4](https://nodejs.org/en/) or above
 
 frontend:
-- `yarn install && yarn run start`
+- [Install yarn](https://yarnpkg.com/lang/en/)
+- Run `yarn install && yarn run start`
 - Go to `http://localhost:8080`
 
 
