@@ -73,6 +73,8 @@ $(function () {
 
     const el = $(event.currentTarget)
 
+    if (el.val().trim().length === 0 && event.keyCode !== 8) return
+
     if (event.keyCode === 13) {
       socket.send(JSON.stringify({text: '\n', user: username}))
       el.val('').trigger('keyup')

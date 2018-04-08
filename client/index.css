@@ -40,6 +40,8 @@
     padding-left: 10px;
     padding-right: 10px;
     text-shadow: 0px 0px 60px #00ff66;
+    margin-right: 40px;
+    margin-bottom: 10px;
 }
 
 .chat ul li::selection {
