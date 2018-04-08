@@ -16,6 +16,19 @@ app.use(express.static('client'))
 
 let clients = []
 
+const colors = [
+  '#00ff66',
+  '#FF55FF',
+  '#5555FF',
+  '#0000AA',
+  '#00AA00',
+  '#00AAAA',
+  '#AA00AA',
+  '#AA5500'
+]
+
+let colorMap = {}
+
 /**
  * Set message expiry to 5 mins
  */
@@ -47,12 +60,24 @@ function cleanupMessages (messages) {
   return cleanedMessages
 }
 
+function setColor (message) {
+  const colorIsSet = colorMap.hasOwnProperty(message.user)
+
+  if (colorIsSet === false) {
+    colorMap[message.user] = _.sample(colors)
+  }
+
+  return colorMap[message.user]
+}
+
 /**
  * Broadcast a message to all clients
  * @param {Object} data
  */
 function broadCast (data) {
-  clients.forEach(client => client.send(JSON.stringify(data)))
+  clients.forEach(client => {
+    client.send(JSON.stringify(data))
+  })
 }
 
 /**
@@ -97,7 +122,8 @@ wss.on('connection', ws => {
         message: message.text,
         date: new Date().getTime(),
         expiry: getExpiryDate(),
-        user: message.user
+        user: message.user,
+        color: setColor(message)
       }
 
       redisClient.set('messages', JSON.stringify(messages))

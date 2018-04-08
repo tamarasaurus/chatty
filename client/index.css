@@ -43,12 +43,11 @@
 }
 
 .chat ul li::selection {
-    background: #00ff66;
+    background: white;
 }
 
 .chat ul li.current {
-    background: #00ff66;
-    color: black;
+    color: white;
 }
 
 .chat ul li.current::selection {

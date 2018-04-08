@@ -20,8 +20,16 @@ $(function () {
 
     _.each(lines, (line, index) => {
       let className = ''
-      if (index === currentlyEditingIndex) className = 'current'
-      list.append(`<li class="${className}">${line.message}</li>`)
+      let background = 'none'
+      let color = line.color
+
+      if (index === currentlyEditingIndex) {
+        className = 'current'
+        background = line.color
+        color = 'white'
+      }
+
+      list.append(`<li style="color: ${color}; background: ${background};" class="${className}">${line.message}</li>`)
     })
 
     scrollToBottom()
@@ -29,6 +37,9 @@ $(function () {
 
   function setUsername (event) {
     const value = $('.intro input').val()
+
+    if (value.trim().length === 0) return
+
     $('.intro').hide()
     $('.chat').show()
     $('.chat input').focus()
